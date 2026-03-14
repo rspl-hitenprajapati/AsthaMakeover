@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Astha Makeover placeholder logo</title>
+  <desc id="desc">Round rose gold emblem with letter A and floral accent.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D8AE95"/>
+      <stop offset="100%" stop-color="#B57B5A"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="48" fill="#FFF8F2"/>
+  <circle cx="120" cy="120" r="84" fill="none" stroke="url(#g)" stroke-width="10"/>
+  <path d="M120 62 L158 178 H143 L133 146 H106 L96 178 H82 L120 62 Z M111 132 H128 L120 107 Z" fill="#8B4B6B"/>
+  <circle cx="176" cy="67" r="9" fill="#C9967A"/>
+  <circle cx="194" cy="88" r="6" fill="#D4A5A5"/>
+</svg>
