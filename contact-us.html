@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -45,7 +45,7 @@
     }
   </script>
 </head>
-<body>
+<body class="contact-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header nav--solid" aria-label="Main navigation">
     <div class="container site-header-inner">
@@ -66,28 +66,31 @@
   </header>
 
   <main id="main-content">
-    <section class="page-title">
-      <div class="container reveal">
-        <p class="eyebrow">Contact Us</p>
-        <h1>Visit or Call Astha Makeover and Academy</h1>
-        <p>For appointments, package guidance, and schedule confirmation, call directly. We are open daily until 9:00 PM.</p>
+    <section class="contact-hero">
+      <div class="container contact-hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">Book Your Appointment</p>
+          <h1>Contact Astha Makeover and Academy</h1>
+          <p>Call, message, or visit the studio to confirm your slot. We can guide the best package based on your event date and beauty goals.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="tel:+916353107949">Call +91 63531 07949</a>
+            <a class="btn btn-secondary" href="https://www.instagram.com/astha_makeoverandacademy/" target="_blank" rel="noopener noreferrer">Message on Instagram</a>
+          </div>
+          <ul class="trust-pills" aria-label="Contact availability">
+            <li>Open daily 9:00 AM - 9:00 PM</li>
+            <li>Nadiad location support</li>
+            <li>Consultation before booking</li>
+          </ul>
+        </div>
+        <article class="card image-card reveal contact-hero-image">
+          <img src="/assets/images/contact-salon.jpg" alt="Salon entrance and seating area at Astha Makeover" loading="eager">
+        </article>
       </div>
     </section>
 
     <section>
-      <div class="container grid two">
-        <article class="card image-card reveal">
-          <img src="/assets/images/contact-salon.jpg" alt="Salon entrance and styling area atmosphere" loading="lazy">
-        </article>
-        <article class="card image-card reveal">
-          <img src="/assets/images/contact-makeup.jpg" alt="Makeup artist preparing bridal look before appointment" loading="lazy">
-        </article>
-      </div>
-    </section>
-
-    <section class="section-soft">
-      <div class="container split">
-        <div class="contact-list reveal">
+      <div class="container contact-main-grid">
+        <div class="contact-info-list reveal">
           <article class="contact-item">
             <strong>Address</strong>
             <span>Opp. Jai Manavseva Trust, Behind Vaishali Cinema, Nadiad, Gujarat 387002</span>
@@ -109,21 +112,73 @@
             <span>Open daily until 9:00 PM. Please confirm exact schedule by call.</span>
           </article>
         </div>
-        <div class="reveal">
-          <iframe
-            class="map-embed"
-            title="Astha Makeover and Academy location map"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=Opp.%20Jai%20Manavseva%20Trust,%20Behind%20Vaishali%20Cinema,%20Nadiad,%20Gujarat%20387002&output=embed"></iframe>
+
+        <article class="card quick-form-card reveal">
+          <h2>Quick Inquiry</h2>
+          <p>Share a few details and then call us for faster confirmation.</p>
+          <form class="quick-form" action="#" method="post">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+            <div class="form-field">
+              <label for="service">Service interest</label>
+              <select id="service" name="service">
+                <option>Bridal Makeup</option>
+                <option>Skin Treatment</option>
+                <option>Hair Services</option>
+                <option>Nail Services</option>
+                <option>Academy Courses</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" rows="4" placeholder="Event date, preferred time, or goals"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit Inquiry</button>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Visit the Studio</p>
+          <h2>Location and In-Person Support</h2>
+          <p>Use the map for directions, then call before arrival so we can reserve your consultation slot.</p>
         </div>
+      </div>
+      <div class="container contact-map-grid">
+        <article class="card map-card reveal">
+          <img src="/assets/images/home-salon-interior.jpg" alt="Astha Makeover studio interior view for visit reference" loading="lazy">
+          <div class="map-card-body">
+            <h3>Studio Address</h3>
+            <p>Opp. Jai Manavseva Trust, Behind Vaishali Cinema, Nadiad, Gujarat 387002</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="https://maps.app.goo.gl/88qBv8KVNoAtsheq9" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+              <a class="btn btn-secondary" href="tel:+916353107949">Call Before Visit</a>
+            </div>
+          </div>
+        </article>
+        <article class="card media-spot reveal">
+          <img src="/assets/images/contact-makeup.jpg" alt="Makeup artist preparing client before appointment" loading="lazy">
+          <div class="media-spot-body">
+            <h3>Pre-Booking Guidance</h3>
+            <p>Share your event date and preferences to get the right package and timing recommendation.</p>
+          </div>
+        </article>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container site-footer-inner">
-      <p>© <span id="year">2026</span> Astha Makeover and Academy. All rights reserved.</p>
+      <p>&copy; <span id="year">2026</span> Astha Makeover and Academy. All rights reserved.</p>
       <div class="foot-links">
         <a href="/services.html">Services</a>
         <a href="/pricing.html">Pricing</a>
@@ -135,4 +190,3 @@
   <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
-
