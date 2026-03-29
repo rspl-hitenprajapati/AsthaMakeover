@@ -54,4 +54,24 @@
     );
     revealItems.forEach((item) => io.observe(item));
   }
+
+  const marquee = document.querySelector(".home-v2-marquee");
+  if (marquee && marquee.children.length) {
+    const clone = marquee.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    marquee.parentElement?.appendChild(clone);
+  }
+
+  const parallaxItems = document.querySelectorAll(".js-parallax");
+  if (parallaxItems.length) {
+    const updateParallax = () => {
+      const y = window.scrollY;
+      parallaxItems.forEach((item) => {
+        const speed = Number(item.getAttribute("data-speed") || "0.08");
+        item.style.transform = `translateY(${Math.max(-16, Math.min(16, y * speed * 0.12))}px)`;
+      });
+    };
+    updateParallax();
+    window.addEventListener("scroll", updateParallax, { passive: true });
+  }
 })();
