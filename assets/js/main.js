@@ -4,6 +4,7 @@
   const nav = document.querySelector("#primary-nav");
   const toggle = document.querySelector("#nav-toggle");
   const year = document.querySelector("#year");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (year) year.textContent = new Date().getFullYear().toString();
 
@@ -39,8 +40,8 @@
   window.addEventListener("scroll", updateHeaderState, { passive: true });
   window.addEventListener("resize", updateHeaderState);
 
-  const revealItems = document.querySelectorAll(".reveal");
-  if (revealItems.length) {
+  const legacyRevealItems = document.querySelectorAll(".reveal");
+  if (legacyRevealItems.length) {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -52,7 +53,36 @@
       },
       { threshold: 0.15 }
     );
-    revealItems.forEach((item) => io.observe(item));
+    legacyRevealItems.forEach((item) => io.observe(item));
+  }
+
+  if (!reducedMotion) {
+    const motionTargets = document.querySelectorAll(
+      "main section, .card, .service-card, .home-v2-service-card, .map-card, .media-spot, .contact-item, .hero-card"
+    );
+    if (motionTargets.length) {
+      motionTargets.forEach((item, index) => {
+        item.setAttribute("data-motion", "reveal");
+        item.style.setProperty("--motion-delay", `${Math.min((index % 8) * 60, 360)}ms`);
+      });
+
+      const motionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              motionObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+      );
+
+      motionTargets.forEach((item) => motionObserver.observe(item));
+    }
+  } else {
+    document.querySelectorAll("main section, .card, .service-card, .home-v2-service-card, .map-card, .media-spot, .contact-item, .hero-card")
+      .forEach((item) => item.classList.add("is-visible"));
   }
 
   const marquee = document.querySelector(".home-v2-marquee");

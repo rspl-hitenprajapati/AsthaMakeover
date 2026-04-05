@@ -1,0 +1,161 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner "Main navigation" [ref=e3]:
+    - generic [ref=e4]:
+      - link "Astha Makeover and Academy home" [ref=e5] [cursor=pointer]:
+        - /url: /index.html
+        - img "Astha Makeover and Academy logo" [ref=e6]
+        - generic [ref=e7]: Astha Makeover and Academy
+      - navigation [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /index.html
+        - link "Services" [ref=e10] [cursor=pointer]:
+          - /url: /services.html
+        - link "Pricing" [ref=e11] [cursor=pointer]:
+          - /url: /pricing.html
+        - link "Success Stories" [ref=e12] [cursor=pointer]:
+          - /url: /success-stories.html
+        - link "About Us" [ref=e13] [cursor=pointer]:
+          - /url: /about-us.html
+        - link "Contact Us" [ref=e14] [cursor=pointer]:
+          - /url: /contact-us.html
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: Nadiad's Bridal and Beauty Signature Studio
+        - heading "Luxury Looks, Calm Experience, and Career-Ready Beauty Learning" [level=1] [ref=e20]
+        - paragraph [ref=e21]: Astha Makeover and Academy blends bridal precision, modern skin and hair care, and practical academy guidance so every client leaves camera-ready and confident.
+        - generic [ref=e22]:
+          - link "Book Consultation" [ref=e23] [cursor=pointer]:
+            - /url: /contact-us.html
+          - link "View Packages" [ref=e24] [cursor=pointer]:
+            - /url: /pricing.html
+          - link "Call +91 63531 07949" [ref=e25] [cursor=pointer]:
+            - /url: tel:+916353107949
+        - generic "Trust highlights" [ref=e26]:
+          - generic [ref=e27]: Open Daily 9:00 AM - 9:00 PM
+          - generic [ref=e28]: HD and Airbrush Bridal Specialists
+          - generic [ref=e29]: Academy With Certification
+      - generic [ref=e30]:
+        - article [ref=e31]:
+          - img "Bridal portrait in red lehenga for a premium makeover look" [ref=e32]
+          - generic [ref=e33]:
+            - strong [ref=e34]: Bridal Artistry
+            - generic [ref=e35]: Function-wise look planning
+        - article [ref=e36]:
+          - img "Astha Makeover and Academy salon exterior" [ref=e37]
+        - generic [ref=e38]:
+          - strong [ref=e39]: 10+
+          - text: Core services and academy tracks
+    - region "Service ticker" [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]: Bridal HD Makeup
+        - generic [ref=e43]: Hydra Facial
+        - generic [ref=e44]: Korean Glass Skin
+        - generic [ref=e45]: Hair Smoothening
+        - generic [ref=e46]: Nail Extensions
+        - generic [ref=e47]: Beauty Academy
+        - generic [ref=e48]: Pre-Wedding Planning
+      - generic [ref=e49]:
+        - generic [ref=e50]: Bridal HD Makeup
+        - generic [ref=e51]: Hydra Facial
+        - generic [ref=e52]: Korean Glass Skin
+        - generic [ref=e53]: Hair Smoothening
+        - generic [ref=e54]: Nail Extensions
+        - generic [ref=e55]: Beauty Academy
+        - generic [ref=e56]: Pre-Wedding Planning
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - paragraph [ref=e60]: Signature Experiences
+        - heading "Carefully Designed Services for Every Occasion" [level=2] [ref=e61]
+      - generic [ref=e62]:
+        - article [ref=e63]:
+          - img "Bridal makeup closeup with floral accessories" [ref=e64]
+          - generic [ref=e65]:
+            - heading "Skin and Glow Protocols" [level=3] [ref=e66]
+            - paragraph [ref=e67]: Hydra and glass skin rituals mapped to your timeline and event schedule.
+            - link "Explore skin packages" [ref=e68] [cursor=pointer]:
+              - /url: /pricing.html
+        - article [ref=e69]:
+          - img "Smooth and glossy hair transformation result" [ref=e70]
+          - generic [ref=e71]:
+            - heading "Hair Styling and Finish" [level=3] [ref=e72]
+            - paragraph [ref=e73]: Color, smoothening, curls, and occasion styling with personalized recommendations.
+            - link "Explore hair services" [ref=e74] [cursor=pointer]:
+              - /url: /services.html
+        - article [ref=e75]:
+          - img "Bridal red look with detailed jewelry and hand styling" [ref=e76]
+          - generic [ref=e77]:
+            - heading "Nails and Detailing" [level=3] [ref=e78]
+            - paragraph [ref=e79]: Elegant extensions and trend-led nail art for events, shoots, and regular upkeep.
+            - link "Explore nail services" [ref=e80] [cursor=pointer]:
+              - /url: /services.html
+        - article [ref=e81]:
+          - img "Astha Makeover and Academy entrance and branding" [ref=e82]
+          - generic [ref=e83]:
+            - heading "Academy Learning Tracks" [level=3] [ref=e84]
+            - paragraph [ref=e85]: Makeup, hair, skin, and nail programs focused on practical, client-ready skills.
+            - link "Explore academy tracks" [ref=e86] [cursor=pointer]:
+              - /url: /about-us.html
+    - generic [ref=e88]:
+      - generic [ref=e89]:
+        - paragraph [ref=e90]: How We Work
+        - heading "Consultation to Final Finish in a Clear Flow" [level=2] [ref=e91]
+        - list [ref=e92]:
+          - listitem [ref=e93]:
+            - strong [ref=e94]: Consult
+            - generic [ref=e95]: We align look goals with skin, hair, and event timeline.
+          - listitem [ref=e96]:
+            - strong [ref=e97]: Customize
+            - generic [ref=e98]: You get the right package and treatment sequence.
+          - listitem [ref=e99]:
+            - strong [ref=e100]: Execute
+            - generic [ref=e101]: Our team delivers with hygiene-led premium product standards.
+          - listitem [ref=e102]:
+            - strong [ref=e103]: Support
+            - generic [ref=e104]: After-care and follow-up guidance keep results lasting.
+        - link "Schedule Your Slot" [ref=e105] [cursor=pointer]:
+          - /url: /contact-us.html
+      - generic [ref=e106]:
+        - img "Bridal portrait with premium evening lighting" [ref=e107]
+        - img "Curled and highlighted hairstyle result" [ref=e108]
+    - generic [ref=e110]:
+      - generic [ref=e111]:
+        - paragraph [ref=e112]: Client Stories
+        - heading "Why Clients Keep Returning to Astha" [level=2] [ref=e113]
+      - generic [ref=e114]:
+        - article [ref=e115]:
+          - paragraph [ref=e116]: ★★★★★
+          - paragraph [ref=e117]: "\"My bridal look stayed fresh and elegant throughout all functions and photos.\""
+          - paragraph [ref=e118]: Riddhi S. | Bridal Client
+        - article [ref=e119]:
+          - paragraph [ref=e120]: ★★★★★
+          - paragraph [ref=e121]: "\"Hydra treatment gave instant glow and the team guided exactly what to do before my event.\""
+          - paragraph [ref=e122]: Hetal P. | Skin Client
+        - article [ref=e123]:
+          - paragraph [ref=e124]: ★★★★★
+          - paragraph [ref=e125]: "\"Academy practice sessions helped me start my own client bookings with confidence.\""
+          - paragraph [ref=e126]: Krupa V. | Academy Student
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - paragraph [ref=e129]: Ready for Your Next Look?
+          - heading "Book Once, Plan Everything Calmly" [level=2] [ref=e130]
+          - paragraph [ref=e131]: From skin prep to final styling, our team will recommend the exact package for your event.
+        - generic [ref=e132]:
+          - link "Book Appointment" [ref=e133] [cursor=pointer]:
+            - /url: /contact-us.html
+          - link "Read More Stories" [ref=e134] [cursor=pointer]:
+            - /url: /success-stories.html
+  - contentinfo [ref=e135]:
+    - generic [ref=e136]:
+      - paragraph [ref=e137]: © 2026 Astha Makeover and Academy. All rights reserved.
+      - generic [ref=e138]:
+        - link "Services" [ref=e139] [cursor=pointer]:
+          - /url: /services.html
+        - link "Pricing" [ref=e140] [cursor=pointer]:
+          - /url: /pricing.html
+        - link "Contact" [ref=e141] [cursor=pointer]:
+          - /url: /contact-us.html
+        - link "Instagram" [ref=e142] [cursor=pointer]:
+          - /url: https://www.instagram.com/astha_makeoverandacademy/
