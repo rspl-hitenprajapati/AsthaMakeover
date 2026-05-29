@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://asm.com/sitemap.xml
+Sitemap: https://asthamakeover.in/sitemap.xml
