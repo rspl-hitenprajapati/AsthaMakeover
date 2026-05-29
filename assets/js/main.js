@@ -49,6 +49,16 @@
     window.addEventListener('scroll', updateHeader, { passive: true });
   }
 
+  /* ---- Home: expose header height so the dark hero can sit behind it ---- */
+  if (isHome && header) {
+    const setHeaderH = () => {
+      document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+    };
+    setHeaderH();
+    window.addEventListener('resize', setHeaderH);
+    window.addEventListener('load', setHeaderH);
+  }
+
   /* ---- Marquee clone (infinite loop needs a duplicate) ---- */
   const marquee = document.querySelector('.home-v2-marquee');
   if (marquee) {
@@ -56,6 +66,218 @@
     clone.setAttribute('aria-hidden', 'true');
     marquee.parentElement.appendChild(clone);
   }
+
+  /* ============================================================
+     HERO CANVAS — animated dot-wave grid + particle network
+     Deep plum base, pink/gold glowing dots. Seamless loop.
+     Reacts to pointer/touch. Pauses off-screen + on reduced motion.
+     ============================================================ */
+  function initHeroCanvas() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.closest('.aurora-hero') || canvas.parentElement;
+
+    const PINK = [236, 72, 153];
+    const GOLD = [245, 185, 66];
+
+    let w = 0, h = 0, dpr = 1;
+    let spacing = 36, cols = 0, rows = 0, amp = 8;
+    let particles = [];
+    let t = 0, raf = null, running = false;
+    const pointer = { x: -9999, y: -9999, active: false };
+
+    const lerp = (a, b, n) => a + (b - a) * n;
+
+    function buildParticles() {
+      const target = Math.round((w * h) / 21000);
+      const max = w < 600 ? 32 : 64;
+      const n = Math.max(16, Math.min(target, max));
+      particles = [];
+      for (let i = 0; i < n; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.32,
+          vy: (Math.random() - 0.5) * 0.32,
+          r: Math.random() * 1.5 + 1.2,
+          gold: Math.random() < 0.28
+        });
+      }
+    }
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = rect.width;
+      h = rect.height;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      spacing = w < 600 ? 30 : 38;
+      amp = spacing * 0.26;
+      cols = Math.ceil(w / spacing) + 2;
+      rows = Math.ceil(h / spacing) + 2;
+      buildParticles();
+    }
+
+    function render(animated) {
+      ctx.clearRect(0, 0, w, h);
+
+      /* 1) Wave dot grid */
+      for (let i = 0; i < cols; i++) {
+        const x = i * spacing;
+        for (let j = 0; j < rows; j++) {
+          const y = j * spacing;
+          const wave = Math.sin(x * 0.018 + t * 1.05) + Math.cos(y * 0.02 + t * 0.85);
+          const b = (wave + 2) / 4; /* 0..1 */
+          const py = y + wave * amp;
+          const radius = 0.5 + b * 1.9;
+          const alpha = 0.10 + b * 0.5;
+          const col = [
+            Math.round(lerp(PINK[0], GOLD[0], b * 0.55)),
+            Math.round(lerp(PINK[1], GOLD[1], b * 0.55)),
+            Math.round(lerp(PINK[2], GOLD[2], b * 0.55))
+          ];
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',' + alpha + ')';
+          ctx.arc(x, py, radius, 0, 6.2832);
+          ctx.fill();
+        }
+      }
+
+      /* 2) Move particles */
+      for (const p of particles) {
+        if (animated) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+          if (pointer.active) {
+            const dx = pointer.x - p.x;
+            const dy = pointer.y - p.y;
+            const d = Math.hypot(dx, dy);
+            if (d < 150 && d > 0.5) {
+              p.x -= (dx / d) * 0.6;
+              p.y -= (dy / d) * 0.6;
+            }
+          }
+        }
+      }
+
+      /* 3) Connection lines between nearby particles */
+      const maxD = 124;
+      for (let a = 0; a < particles.length; a++) {
+        for (let b2 = a + 1; b2 < particles.length; b2++) {
+          const dx = particles[a].x - particles[b2].x;
+          const dy = particles[a].y - particles[b2].y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < maxD * maxD) {
+            const al = (1 - Math.sqrt(d2) / maxD) * 0.22;
+            ctx.strokeStyle = 'rgba(236,72,153,' + al + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b2].x, particles[b2].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      /* 4) Pointer connection lines (gold) */
+      if (pointer.active) {
+        for (const p of particles) {
+          const dx = p.x - pointer.x;
+          const dy = p.y - pointer.y;
+          const d = Math.hypot(dx, dy);
+          if (d < 165) {
+            const al = (1 - d / 165) * 0.4;
+            ctx.strokeStyle = 'rgba(245,185,66,' + al + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(pointer.x, pointer.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      /* 5) Glowing particle dots */
+      for (const p of particles) {
+        const col = p.gold ? GOLD : PINK;
+        ctx.beginPath();
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',0.85)';
+        ctx.fillStyle = 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',0.92)';
+        ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    function loop() {
+      t += 0.016;
+      render(true);
+      raf = requestAnimationFrame(loop);
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      loop();
+    }
+    function stop() {
+      running = false;
+      if (raf) cancelAnimationFrame(raf);
+      raf = null;
+    }
+
+    /* Pointer interaction (mouse + touch) */
+    const setPointer = e => {
+      const rect = canvas.getBoundingClientRect();
+      const pt = e.touches ? e.touches[0] : e;
+      pointer.x = pt.clientX - rect.left;
+      pointer.y = pt.clientY - rect.top;
+      pointer.active = true;
+    };
+    hero.addEventListener('pointermove', setPointer, { passive: true });
+    hero.addEventListener('pointerleave', () => { pointer.active = false; });
+
+    /* Resize handling (debounced) */
+    let rt = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(resize, 150);
+    });
+
+    resize();
+
+    if (reducedMotion) {
+      render(false); /* single static frame */
+      return;
+    }
+
+    /* Pause when hero scrolls out of view, and when tab hidden */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => (e.isIntersecting ? start() : stop()));
+    }, { threshold: 0 });
+    io.observe(hero);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else if (isInView(hero)) start();
+    });
+
+    function isInView(el) {
+      const r = el.getBoundingClientRect();
+      return r.bottom > 0 && r.top < window.innerHeight;
+    }
+
+    start();
+  }
+
+  initHeroCanvas();
 
   /* ============================================================
      HOME PAGE — GSAP CINEMATIC ANIMATIONS
